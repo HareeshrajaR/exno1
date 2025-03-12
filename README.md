@@ -67,7 +67,62 @@ df_dropped = df.dropna()
 df_dropped
 ```
 ```
+df.fillna({'GENDER':'MALE','NAME':'SRI','ADDRESS':'POONAMALEE','M1':98,'M2':87,'M3':76,'M4':92,'TOTAL':305,'AVG':89.999999})
+```
+```
+df.fillna({'GENDER':'MALE','NAME':'HARI','ADDRESS':'CHENNAI','M4':'87.0'})
+```
+```
+iris=pd.read_csv('/content/iris.csv')
+iris
+```
+```
+iris.info()
+```
+```
+iris.describe()
+```
 
+```
+iris.shape
+```
+```
+import seaborn as sns
+sns.boxplot(x='sepal_width',data=iris)
+```
+```
+iris.isnull().sum()
+```
+```
+q1=iris.sepal_width.quantile(0.25)
+q3=iris.sepal_width.quantile(0.75)
+iqr=q3-q1
+iqr
+```
+```
+rid=iris[((iris.sepal_width<(q1-1.5*iqr))|(iris.sepal_width>(q3+1.5*iqr)))]
+rid['sepal_width']
+```
+```
+rid=iris[~((iris.sepal_width<(q1-1.5*iqr))|(iris.sepal_width>(q3+1.5*iqr)))]
+rid
+```
+```
+rid=iris[((iris.sepal_width>(q1-1.5*iqr))&(iris.sepal_width<(q3+1.5*iqr)))]
+rid
+```
+```
+sns.boxplot(x='sepal_width',data=rid)
+```
+```
+import numpy as np
+import scipy.stats as stats
+z=np.abs(stats.zscore(iris['sepal_width']))
+z
+```
+```
+iris=iris[(z<3)]
+iris
 ```
 # Result
           <<include your Result here>>
